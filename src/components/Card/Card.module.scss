@@ -1,0 +1,22 @@
+.cardContent {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 0.5rem;
+}
+
+.card {
+  background-color: grey;
+  width: 20%;
+  border-radius: 0.3rem;
+}
+
+.cardButtons {
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.cardButtons button {
+  cursor: pointer;
+}
