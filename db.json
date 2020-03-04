@@ -1,0 +1,17 @@
+{
+  "users": [
+    { "id": "1",
+      "name": "Jeka",
+      "email": "161russ@gmail.com",
+      "telephone": "+79034851135",
+      "position": "Junior Developer"
+    },
+    { 
+      "id": "2",
+      "name": "Misha",
+      "email": "mmChigorin@gmail.com",
+      "telephone": "+77785554998",
+      "position": "Middle Developer"
+    }
+  ]
+}
