@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { deleteUser, getUsers, getUsersLoading } from '../../Redux/actions/actions';
+import {
+  deleteUser,
+  getUsers,
+  getUsersLoading,
+  openOrCloseModal,
+  editUser,
+} from '../../Redux/actions/actions';
 import styles from './Card.module.scss';
 import Loader from '../Loader/Loader';
 
 const Card = () => {
-  // const userData = (localStorageUsers === 'KEK') ? users : localStorageUsers;
   const loading = useSelector((state) => state.cardsReducer.loading);
   const users = useSelector((state) => state.cardsReducer.data);
   const error = useSelector((state) => state.cardsReducer.usersError);
   const dispatch = useDispatch();
-  console.log('USERSDATA', users);
-
 
   useEffect(() => {
     dispatch(getUsersLoading());
@@ -24,6 +27,9 @@ const Card = () => {
 
   const removeUser = (id, obj) => {
     dispatch(deleteUser(id, obj));
+  };
+  const handleOpenEditForm = (item) => {
+    dispatch(editUser(item));
   };
 
   return (
@@ -49,7 +55,7 @@ const Card = () => {
             {item.position}
           </div>
           <div className={styles.cardButtons}>
-            <button type="button">
+            <button type="button" onClick={() => handleOpenEditForm(item)}>
               Edit
             </button>
             <button type="button" onClick={() => removeUser(item.id, item)}>

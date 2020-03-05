@@ -61,16 +61,20 @@ export default function (state = initialState, action) {
     case UPDATE_USER: {
       return {
         ...state,
-        currentUser: [
-          ...state.currentUser, ...action.payload,
-        ],
         editForm: false,
         modalOpen: false,
+        data: [
+          ...state.data.filter((item) => item.id !== action.payload.id),
+          action.payload,
+        ],
       };
     }
     case EDIT_FORM: {
       return {
         ...state,
+        currentUser: [
+          ...state.currentUser, action.payload,
+        ],
         editForm: true,
         modalOpen: true,
       };

@@ -5,9 +5,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { openOrCloseModal } from '../../Redux/actions/actions';
 import styles from './Modal.module.scss';
 import AddUserForm from './AddUserForm';
+import EditForm from '../EditForm/EditForm';
 
 const ModalForm = () => {
   const modal = useSelector((state) => state.cardsReducer.modalOpen);
+  const edit = useSelector((state) => state.cardsReducer.editForm);
   const dispatch = useDispatch();
   console.log('MODALAK', modal)
 
@@ -33,7 +35,7 @@ const ModalForm = () => {
             </span>
           </div>
           <div className={styles.modalBody}>
-            <AddUserForm />
+            {edit ? (<EditForm />) : (<AddUserForm />)}
           </div>
         </div>
       </div>

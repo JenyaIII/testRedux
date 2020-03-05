@@ -67,11 +67,12 @@ export const openOrCloseModal = (bool) => ({
   payload: bool,
 });
 
-export const editFormOpen = () => ({
-  type: EDIT_FORM,
+export const updateUser = (item) => ({
+  type: UPDATE_USER,
+  payload: item,
 });
 
 export const editUser = (item) => ({
-  type: UPDATE_USER,
+  type: EDIT_FORM,
   payload: item,
 });

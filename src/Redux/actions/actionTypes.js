@@ -6,3 +6,4 @@ export const DELETE_USER = 'DELETE_USER';
 export const CHANGE_MODAL = 'CHANGE_MODAL';
 export const EDIT_CARD = 'EDIT_CARD';
 export const UPDATE_USER = 'UPDATE_USER';
+export const EDIT_FORM = 'EDIT_FORM';

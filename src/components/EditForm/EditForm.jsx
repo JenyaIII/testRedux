@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { editUser, editFormOpen } from '../../Redux/actions/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../Redux/actions/actions';
 
 const EditForm = () => {
-  const [user, setUser] = useState({
-    id: null,
-    name: '',
-    email: '',
-    telephone: '',
-    position: '',
-  });
+  const currentUser = useSelector((state) => state.cardsReducer.currentUser);
+  const [user, setUser] = useState(currentUser[0]);
 
   const dispatch = useDispatch();
 
@@ -20,8 +15,7 @@ const EditForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     user.id = Date.now();
-    dispatch(editUser(user));
-    dispatch(editFormOpen(false));
+    dispatch(updateUser(user));
     setUser({
       id: null,
       name: '',
@@ -37,6 +31,7 @@ const EditForm = () => {
     { name: 'telephone' },
     { name: 'position' },
   ];
+  console.log('kek', user);
 
   return (
     <div className="container">

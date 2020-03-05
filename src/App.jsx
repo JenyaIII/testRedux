@@ -1,12 +1,11 @@
 import React from 'react';
 import './App.css';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { openOrCloseModal } from './Redux/actions/actions';
 import Cards from './components/Cards/Cards';
 import ModalForm from './components/ModalForm/Modal';
 
 function App() {
-  const modal = useSelector((state) => state.cardsReducer.modalOpen);
   const dispatch = useDispatch();
 
   const handleOpenModal = (bool) => {
