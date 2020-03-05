@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addUser, openOrCloseModal } from '../../Redux/actions/actions';
+import { editUser, editFormOpen } from '../../Redux/actions/actions';
 
-const AddUserForm = () => {
+const EditForm = () => {
   const [user, setUser] = useState({
     id: null,
     name: '',
@@ -20,8 +20,8 @@ const AddUserForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     user.id = Date.now();
-    dispatch(addUser(user));
-    dispatch(openOrCloseModal(false));
+    dispatch(editUser(user));
+    dispatch(editFormOpen(false));
     setUser({
       id: null,
       name: '',
@@ -67,4 +67,4 @@ const AddUserForm = () => {
   );
 };
 
-export default AddUserForm;
+export default EditForm;

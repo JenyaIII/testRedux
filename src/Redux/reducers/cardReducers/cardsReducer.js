@@ -1,11 +1,20 @@
 import {
-  ADD_USER, GET_USERS, GET_USERS_LOADING, GET_USERS_ERROR,
+  ADD_USER,
+  GET_USERS,
+  GET_USERS_LOADING,
+  GET_USERS_ERROR,
+  DELETE_USER,
+  CHANGE_MODAL,
+  EDIT_FORM,
+  UPDATE_USER,
 } from '../../actions/actionTypes';
 
 const initialState = {
   loading: false,
-  usersError: false,
+  modalOpen: false,
+  editForm: false,
   data: [],
+  currentUser: [],
 };
 
 export default function (state = initialState, action) {
@@ -13,13 +22,13 @@ export default function (state = initialState, action) {
     case ADD_USER: {
       return {
         ...state,
-        data: [...state.users, action.payload],
+        data: [...state.data, action.payload],
       };
     }
     case GET_USERS: {
       return {
         ...state,
-        data: [...state.data, action.payload.data],
+        data: [...state.data, ...action.payload.data],
         loading: false,
       };
     }
@@ -27,14 +36,43 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true,
-        usersError: false,
       };
     }
     case GET_USERS_ERROR: {
       return {
         ...state,
-        usersError: action.payload,
         loading: false,
+      };
+    }
+    case DELETE_USER: {
+      return {
+        ...state,
+        data: [
+          ...state.data.filter((item) => item.id !== action.payload.id),
+        ],
+      };
+    }
+    case CHANGE_MODAL: {
+      return {
+        ...state,
+        modalOpen: action.payload,
+      };
+    }
+    case UPDATE_USER: {
+      return {
+        ...state,
+        currentUser: [
+          ...state.currentUser, ...action.payload,
+        ],
+        editForm: false,
+        modalOpen: false,
+      };
+    }
+    case EDIT_FORM: {
+      return {
+        ...state,
+        editForm: true,
+        modalOpen: true,
       };
     }
     default:

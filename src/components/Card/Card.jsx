@@ -1,16 +1,35 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteUser, getUsers, getUsersLoading } from '../../Redux/actions/actions';
 import styles from './Card.module.scss';
 import Loader from '../Loader/Loader';
 
-const Card = ({ users }) => {
+const Card = () => {
   // const userData = (localStorageUsers === 'KEK') ? users : localStorageUsers;
   const loading = useSelector((state) => state.cardsReducer.loading);
-  console.log('USERSDATA', users[0]);
+  const users = useSelector((state) => state.cardsReducer.data);
+  const error = useSelector((state) => state.cardsReducer.usersError);
+  const dispatch = useDispatch();
+  console.log('USERSDATA', users);
+
+
+  useEffect(() => {
+    dispatch(getUsersLoading());
+    dispatch(getUsers());
+  }, [dispatch]);
+
+  if (error) {
+    return <p>{error}</p>;
+  }
+
+  const removeUser = (id, obj) => {
+    dispatch(deleteUser(id, obj));
+  };
+
   return (
     <>
-      {loading ? (<Loader />) : (users[0] && users[0].map((item) => (
-        <div className={styles.card} key={item.id}>
+      {loading ? (<Loader />) : ((users || users[0]).map((item) => (
+        <div className={styles.card} key={item.key}>
           <div className={styles.cardTitle}>
             <h3>{item.name}</h3>
           </div>
@@ -33,7 +52,7 @@ const Card = ({ users }) => {
             <button type="button">
               Edit
             </button>
-            <button type="button">
+            <button type="button" onClick={() => removeUser(item.id, item)}>
               Delete
             </button>
           </div>

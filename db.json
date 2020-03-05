@@ -1,17 +1,25 @@
 {
   "users": [
-    { "id": "1",
+    {
+      "id": "1",
       "name": "Jeka",
       "email": "161russ@gmail.com",
       "telephone": "+79034851135",
       "position": "Junior Developer"
     },
-    { 
-      "id": "2",
-      "name": "Misha",
-      "email": "mmChigorin@gmail.com",
-      "telephone": "+77785554998",
-      "position": "Middle Developer"
+    {
+      "id": 1583410351105,
+      "name": "34673467",
+      "email": "45674567",
+      "telephone": "674567",
+      "position": "245235"
+    },
+    {
+      "id": 1583412331099,
+      "name": "235235",
+      "email": "235235",
+      "telephone": "5235",
+      "position": "2235235"
     }
   ]
 }
